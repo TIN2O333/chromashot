@@ -90,6 +90,26 @@ npx expo start --tunnel
 - 应用最低要求 **iOS 16.0**，设备需为 arm64（iPhone 5s 及以后）
 - 流水线使用 `macos-26` + Xcode 26，因为 RN 0.88 的 Codegen 产物要求 Swift 6.2
 
+## 安装到 Android（APK）
+
+Android 不需要账号或侧载工具，直接装 APK 即可。
+
+### 1. 获取 APK
+
+打开仓库的 **Actions → Android APK → 最近一次成功运行**，在页面底部 `Artifacts` 中下载 `ChromaShot-apk`，解压得到 `ChromaShot.apk`。
+
+### 2. 安装
+
+1. 把 `.apk` 传到手机（数据线、网盘、微信文件传输均可）
+2. 点击安装，系统提示时允许「安装未知来源应用」
+3. 首次打开会申请相机权限，允许后即可使用
+
+### 3. 注意事项
+
+- 使用 debug 签名，可覆盖安装后续版本；若提示签名冲突，先卸载旧版再装
+- 通用包包含 `arm64-v8a / armeabi-v7a / x86 / x86_64` 四种 ABI，体积约 93 MB
+- 已屏蔽 `RECORD_AUDIO` 权限，应用只拍照不录音
+
 ## 项目结构
 
 ```
