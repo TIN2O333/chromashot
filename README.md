@@ -65,6 +65,31 @@ npx expo start --tunnel
 
 > 真机预览时若提示账号不一致，可退出 Expo Go 登录使用匿名模式，或直接使用 tunnel 模式。
 
+## 安装到 iPhone（未签名 IPA）
+
+没有付费 Apple 开发者账号也能装：仓库内置 GitHub Actions 流水线，在 macOS runner 上编译未签名 IPA，再用免费 Apple ID 侧载。
+
+### 1. 获取 IPA
+
+打开仓库的 **Actions → iOS unsigned IPA → 最近一次成功运行**，在页面底部 `Artifacts` 中下载 `ChromaShot-unsigned-ipa`，解压得到 `ChromaShot-unsigned.ipa`。
+
+也可以在本地手动触发：Actions 页面右上角 `Run workflow`。
+
+### 2. 侧载到手机
+
+1. 电脑安装 [Sideloadly](https://sideloadly.io/) 与 [iTunes](https://www.apple.com/itunes/)（必须用 Apple 官网版本，不要用 Microsoft Store 版，否则识别不到设备）
+2. iPhone 用数据线连电脑，解锁并点「信任此电脑」
+3. 把 `.ipa` 拖进 Sideloadly，`Apple ID` 填自己的免费账号，点 `Start`
+4. 首次安装后，在 iPhone 的 **设置 → 通用 → VPN 与设备管理** 中信任对应的开发者描述文件
+5. iOS 16 及以上还需在 **设置 → 隐私与安全性 → 开发者模式** 中打开开发者模式并重启手机
+
+### 3. 注意事项
+
+- 免费 Apple ID 签名的应用 **7 天过期**，到期需重新侧载一次
+- 同一个免费账号最多同时安装 3 个自签应用
+- 应用最低要求 **iOS 16.0**，设备需为 arm64（iPhone 5s 及以后）
+- 流水线使用 `macos-26` + Xcode 26，因为 RN 0.88 的 Codegen 产物要求 Swift 6.2
+
 ## 项目结构
 
 ```
@@ -115,7 +140,8 @@ chromashot/
 ## 已知限制
 
 - 演示版拍摄不会写入相册，也不保存照片
-- 未接入 3D LUT 渲染管线与 EAS 真机安装包
+- 未接入 3D LUT 渲染管线
+- 提供的是未签名 IPA，需要自行侧载，免费账号签名 7 天过期
 - 复刻模式不支持「靠近 / 远离」这类位移引导（需要相机实时帧做图像匹配）
 - 风格与滤镜仅保存在内存，重启后恢复默认
 
