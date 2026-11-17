@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "ChromaShot",
+    "slug": "chromashot",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0A0B",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chromashot.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "ChromaShot 需要使用相机来实现实时取景与拍摄。",
+        "NSPhotoLibraryUsageDescription": "ChromaShot 需要访问相册以导入参考图或照片。",
+        "NSPhotoLibraryAddUsageDescription": "ChromaShot 需要保存拍摄的照片到相册。"
+      }
+    },
+    "android": {
+      "package": "com.chromashot.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0B",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset"
+    ]
+  }
+}
